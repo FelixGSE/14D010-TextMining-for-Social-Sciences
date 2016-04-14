@@ -1,0 +1,3 @@
+# 14D010-TextMining-for-Social-Sciences
+
+This repository stores ... 
