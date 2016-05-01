@@ -1,0 +1,130 @@
+---
+title: "Text Mining Homework 2"
+author: "Aimee Barciauskas, Felix Gutmann, Guglielmo Pelino, Thomas Vicente"
+date: "30 aprile 2016"
+output: pdf_document
+header-includes: \usepackage{bm}
+                 \usepackage{bbm}
+                 \usepackage{algorithmic}
+                 \usepackage{algorithm}
+
+---
+### Exercise 2
+
+***(a)***
+The parameters are: 
+
+* $\left\{\rho_k\right\}_{k=1,\dots,K}$ for the latent variables;
+* $\left\{\beta_k^1\right\}_{k=1,\dots,K}$ for the first distribution, where each $\beta_k^1$ is a $V_1 -1$ dimensional probability vector;
+* $\left\{\beta_k^2\right\}_{k=1,\dots,K}$ for the second distribution.
+
+The observed data are the two vector of counts matrices which we will denote by $\textbf{X}^1$ and $\textbf{X}^2$; finally, the latent variables are the $z_i$'s.
+
+***(b)***
+Denoting the complete likelihood as $L(\textbf{X}^1, \textbf{X}^2, \textbf{z} \left| \bm{\rho}, \bm{B}^1, \bm{B}^2) \right .$, we observe that, by the conditional probability, denoting with $x_i^1$ the $i$-th row of $\textbf{X}^1$ 
+$$
+\begin{aligned}
+P(x_i^1, x_i^2, z_i & = k \left| \bm{\rho}, \bm{B}^1, \bm{B}^2 \right .) \\
+& = P(x_i^1, x_i^2 \left| \bm{\rho}, \bm{B}^1, \bm{B}^2, z_i = k \right .) P(z_i = k \left| \bm{\rho}, \bm{B}^1, \bm{B}^2 \right .) \\
+& = P(x_i^1 \left| \bm{\rho}, \bm{B}^1, \bm{B}^2, z_i = k \right .) P(x_i^2 \left| \bm{\rho}, \bm{B}^1, \bm{B}^2, z_i = k \right .) P(z_i = k \left| \bm{\rho}, \bm{B}^1, \bm{B}^2 \right .) \\
+& = \prod_{v_1 = 1}^{V_1} (\beta_{k,v_1}^1)^{x_{i,v_1}^1} \prod_{v_2 = 1}^{V_2} (\beta_{k,v_2}^2)^{x_{i,v_2}^2} \rho_k.
+\end{aligned}
+$$
+Using this expression we can write in general,
+$$
+P(x_i^1, x_i^2, z_i \left| \bm{\rho}, \bm{B}^1, \bm{B}^2 \right .) = \prod_{k} \left[\rho_k \prod_{v_1} (\beta_{k,v_1}^1)^{x_{i,v_1}^1}  \prod_{v_2} (\beta_{k,v_2}^2)^{x_{i,v_2}^2}\right]^{\mathbbm{1}_{(z_i = k)}}.
+$$
+Thus, the complete likelihood is:
+$$
+\begin{aligned}
+L(\bm{X}^1, \bm{X}^2, \bm{z}) & = \prod_i \prod_k \left[\rho_k \prod_{v_1}^{V_1} (\beta_{k,v_1}^1)^{x_{i,v_1}^1} \prod_{v_2}^{V_2} (\beta_{k,v_2}^2)^{x_{i,v_2}^2}\right]^{\mathbbm{1}_{(z_i = k)}}.
+\end{aligned}
+$$
+Taking the log we get the complete data log-likelihood:
+$$
+l(\bm{X}^1, \bm{X}^2, \bm{z}) = \sum_i \sum_k \mathbbm{1}_{(z_i = k)} \left[\log(\rho_k) + \sum_{v_1}^{V_1} x_{i,v_1}^1 \log(\beta_{k,v_1}^1) + \sum_{v_2}^{V_2} x_{i,v_2}^2 \log(\beta_{k,v_2}^2)\right].
+$$
+
+***(c)***
+In the E-step of the algorithm we compute the expected value of the complete log-likelihood w.r.t. the conditional distribution of $\bm{z} \left| \bm{X}^1, \bm{X}^2, \bm{\rho}^i, \bm{B}^1_i, \bm{B}^2_i \right .$.\
+Given this conditional distribution, all we have to compute is
+$$
+\mathbb{E}(\mathbbm{1}_{(z_i = k)} \left| \bm{\rho}^i, \bm{B}^1_i, \bm{B}^2_i, \bm{X}^1, \bm{X}^2 \right .) = P(z_i = k \left| \bm{\rho}^i, \bm{B}^1_i, \bm{B}^2_i, \bm{X}^1, \bm{X}^2) \equiv \hat{z}_{i,k}\right. ,
+$$
+because the other terms are not functions of $\bm{z}$.\
+By Bayes formula we can compute
+$$
+\begin{aligned}
+\hat{z}_{i,k} & = P(z_i = k \left| \bm{\rho}^i, \bm{B}^1_i, \bm{B}^2_i, x_i^1, x_i^2 \right .) \\
+& \propto P(x_i^1, x_i^2 \left| \bm{\rho}^i, \bm{B}^1_i, \bm{B}^2_i, z_i = k \right .) P(z_i = k \left| \bm{\rho}^i, \bm{B}^1_i, \bm{B}^2_i \right .) = \text{[by conditional independence of the two features]} \\
+& = \rho_k^i P(x_i^1 \left|\bm{\rho}^i, \bm{B}^1_i, \bm{B}^2_i, z_i = k \right .) P(x_i^2 \left| \bm{\rho}^i, \bm{B}^1_i, \bm{B}^2_i, z_i = k\right.)\\
+& = \rho_k^i \prod_{v_1}^{V_1}(\beta_{k,v_1}^{i,1})^{x_{i,v_1}} \prod_{v_2}^{V_2} (\beta_{k,v_2}^{i,2})^{x_{i,v_2}}.
+\end{aligned}
+$$
+Thus, we can write the $Q$ function as 
+$$
+Q(\bm{\rho}, \bm{B}^1, \bm{B}^2, \bm{\rho}^i, \bm{B}^1_i, \bm{B}^2_i) = \sum_{i} \sum_{k} \hat{z}_{i,k} [\log(\rho_k) + \sum_{v_1}^{V_1} x_{i,v_1}^1 \log(\beta_{k,v_1}^1) + \sum_{v_2}^{V_2} x_{i,v_2}^2 \log(\beta_{k,v_2}^2)].
+$$
+We note that $Q$ depends on both the current iteration values $\bm{\rho}^i, \bm{B}^1_i, \bm{B}^2_i$ because of $\hat{z}_{i,k}$ and on $\bm{\rho}, \bm{B}^1, \bm{B}^2$ because of the second part of the expression.
+
+***(d)***
+For the M step we have to maximize $Q$ w.r.t. the parameter values, with the constraints on the probability vectors $\bm{rho}, \bm{\beta}^1, \bm{\beta}^2$.\
+The Lagrangian is the following:
+$$
+Q(\bm{\rho}, \bm{B}^1, \bm{B}^2, \bm{\rho}^i, \bm{B}^1_i, \bm{B}^2_i) + \nu(1 - \sum_k \rho_k) + \sum_k \lambda_{k,1} (1 - \sum_{v_1} \beta_{k,v_1}^1) + \sum_{k} \lambda_{k,2} (1 - \sum_{v_2} \beta_{k,v_2}^2).
+$$
+Taking the derivative w.r.t. $\rho_j$ and setting it to $0$ we find
+$$
+\frac{\partial}{\partial \rho_j} = \sum_{i} \hat{z}_{i,j} \frac{1}{\rho_j} - \nu = 0,
+$$
+and thus 
+$$
+\rho_j = \sum_i \hat{z}_{i,j} \frac{1}{\nu}.
+$$
+By summing over $j$ in the last expression, and by our constraint on $\rho$ which is a probability vector, we obtain:
+$$
+1 = \sum_{i,j} \hat{z}_{i,j} \frac{1}{\nu},
+$$
+which implies $\nu = \sum_{i,j}\hat{z}_{i,j}$.\
+This finally gives us the expression for the updated parameter for $\rho_k$, $k = 1,\dots, K$ in the $i+1$-th iteration of the algorithm:
+$$
+\rho_k^{i+1} = \frac{\sum_i \hat{z}_{i,k}}{\sum_{i,k} \hat{z}_{i,k}}.
+$$
+Then, maximizing over $\beta$'s we obtain 
+$$
+\frac{\partial}{\partial \beta_{j,v_1}^1} = \sum_i \left[\hat{z}_{i,j} x_{i,v_1}^1 \frac{1}{\beta^1_{j,v_1}}\right] - \lambda_{j,1} = 0
+$$
+which in turns can be rewritten as 
+$$
+\sum_i \hat{z}_{i,j} x_{i,v_1}^1 - \beta_{j,v_1}^1 \lambda_{j,v_1} = 0.
+$$
+Summing over $v_1$ and recalling that by definition $\sum_{v_1}\beta_{j,v_1}^1 = 1$, we find
+$$
+\sum_{v_1}\sum_i \hat{z}_{i,j} x_{i,v_1}^1 = \lambda_{j,1},
+$$
+which finally gives for each $k = 1,\dots, K$
+$$
+\beta_{k,v_1}^{1, (i+1)} = \frac{\sum_i \hat{z}_{i,k} x_{i,v_1}^1}{\sum_i \hat{z}_{i,k} \sum_{v_1} x_{i,v_1}^1},
+$$
+and analogously for $\beta^2$ we have
+$$
+\beta_{k,v_2}^{2, (i+1)} = \frac{\sum_i \hat{z}_{i,k} x_{i,v_2}^2}{\sum_i \hat{z}_{i,k} \sum_{v_2} x_{i,v_2}^2}.
+$$
+
+***(e)***
+\begin{algorithm*}
+\caption{EM algorithm pseudo-code}
+\begin{algorithmic}
+\STATE$\text{Initialize parameters } \mathit{ \bm{\rho}^0, \mathbf{B}_1^0, \mathbf{B}_2^0}$
+\STATE$\text{Compute}  \ \xi_{i,k}^n = \rho_k^n \prod_{v_1} (\beta_{k,v_1}^{n,1})^{x_{i,v_1}} \prod_{v_2} (\beta_{k,v_2}^{n,2})^{x_{i,v_2}}$
+\STATE$\text{Update: }$
+
+   \STATE$\rho_k^{n+1} = \frac{\sum_i \xi_{i,k}^n}{\sum_i \sum_k \xi_{i,k}^n}$
+   
+   \STATE$\beta_{k,v_1}^{(n+1,1)} = \frac{\sum_i \xi_{i,k}^n x_{i,v_1}^1}{\sum_i \xi_{i,k}^n \sum_{v_1} x_{i,v_1}^1}$
+   
+   \STATE$\beta_{k,v_2}^{(n+1,2)} = \frac{\sum_i \xi_{i,k}^n x_{i,v_2}^2}{\sum_i \xi_{i,k}^n \sum_{v_2} x_{i,v_2}^2}$
+   
+   
+\end{algorithmic}
+\end{algorithm*}
