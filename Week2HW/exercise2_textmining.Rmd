@@ -1,7 +1,6 @@
 ---
-title: "Text Mining Homework 2"
+title: "Text Mining Homework - Week 2"
 author: "Aimee Barciauskas, Felix Gutmann, Guglielmo Pelino, Thomas Vicente"
-date: "30 aprile 2016"
 output: pdf_document
 header-includes: \usepackage{bm}
                  \usepackage{bbm}
