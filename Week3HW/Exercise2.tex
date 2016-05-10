@@ -66,12 +66,12 @@ The \textit{Markov Blanket} of node $V_i$ in the DAG consists of its parents, it
 
 \begin{enumerate}
 	\item Choose values for $\alpha$ and $\eta$
-	\item For each s $\in$ $\{1,\dots,S\}$: 
-	\item[-] sample from $\textbf{P}\bigg[\boldsymbol{\rho}^s\bigg|z_d^{(s-1)}\bigg] \propto \textbf{P}\bigg[z_d^{(s-1)}\bigg|\boldsymbol{\rho}^s\bigg]\textbf{P}\bigg[\boldsymbol{\rho}^s\bigg] \\ = \prod_{k} \big( \rho_k^s \big)^{\alpha - 1 }  \rho_k^s \\ \sim \textbf{Dir}(\alpha + s)$
-	\item[-]  sample from $\textbf{P}\bigg[\boldsymbol{\beta}_k^s \bigg| \textbf{w}, \boldsymbol{z}^{(s-1)}, \boldsymbol{\beta}_{-k}^{(s-1)} \bigg] \propto  \textbf{P}\bigg[\textbf{w} \bigg| \boldsymbol{z}^{(s-1)}, \textbf{B}\bigg]\textbf{P}\bigg[\boldsymbol{\beta}_k^s \bigg] \\ \prod_{v}\prod_{k} \beta_{k,v}^{m^{(s-1)}_{k,v} } \prod_{v} \beta_{k,v}^{\eta-1} \propto \prod_{v} \beta_{k,v}^{m^{(s-1)}_{k,v} } \prod_{v} \beta_{k,v}^{\eta-1}  \\ \sim \textbf{Dir}(\eta + m_{k,1}^{s-1},\dots,\eta + m_{k,V}^{s-1}) $
-	\item[-] sample from $\textbf{P}\bigg[z_d^s = k \bigg| \textbf{w}_d, \textbf{B}^s,\boldsymbol{\rho}^s\bigg] = \rho_k^s$,
+	\item For s $\in$ $\{1,\dots,S\}$: 
+	\item[-] sample from $\textbf{P}\bigg[\boldsymbol{\rho}^s\bigg|z_d^{(s-1)}\bigg] \propto \textbf{P}\bigg[z_d^{(s-1)}\bigg|\boldsymbol{\rho}^s\bigg]\textbf{P}\bigg[\boldsymbol{\rho}^s\bigg] \\ = \prod_{k}  \rho_k^s \big( \rho_k^s \big)^{\alpha - 1 } \\ \sim \textbf{Dir}(\alpha + s)$
+	\item[-]  sample  $K$ times from $\textbf{P}\bigg[\boldsymbol{\beta}_k^s \bigg| \textbf{w}, \boldsymbol{z}^{(s-1)}, \boldsymbol{\beta}_{-k}^{(s-1)} \bigg] \propto  \textbf{P}\bigg[\textbf{w} \bigg| \boldsymbol{z}^{(s-1)}, \textbf{B}\bigg]\textbf{P}\bigg[\boldsymbol{\beta}_k^s \bigg] \\ = \prod_{v}\prod_{k} \beta_{k,v}^{m^{(s-1)}_{k,v} } \prod_{v} \beta_{k,v}^{\eta-1} \propto \prod_{v} \beta_{k,v}^{m^{(s-1)}_{k,v} } \prod_{v} \beta_{k,v}^{\eta-1}  \\ \sim \textbf{Dir}(\eta + m_{k,1}^{s-1},\dots,\eta + m_{k,V}^{s-1}) $
+	\item[-] sample $D$ times from $\textbf{P}\bigg[z_d^s = k \bigg| \textbf{w}_d, \textbf{B}^s,\boldsymbol{\rho}^s\bigg] = \rho_k^s$,
 \end{enumerate}
-where $m_{k,v}^{s-1}$ is the number of times topic k allocation variable generates term v in the $(s-1)$-th step. 
+where $m_{k,v}^{s-1}$ is the number of times topic $k$ allocation variable generates term $v$ according to the $(s-1)$-th step parameter values. 
 
 \end{document}
 
