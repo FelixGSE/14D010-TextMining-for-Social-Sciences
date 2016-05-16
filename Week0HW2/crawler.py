@@ -36,7 +36,6 @@ def get_poems( url_list , max_delay = None ):
     poems = []
     project_info = []
     for ind in url_list:
-        print ind
         if max_delay is not None:
             sleep_time = random.randint(1,max_delay)
             time.sleep(sleep_time)
