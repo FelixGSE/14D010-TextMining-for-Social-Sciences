@@ -1,0 +1,20 @@
+[
+   [
+      1, 
+      "Rihanna", 
+      "We Ride", 
+      "DAS SIND BEHINDERTE LYRICS"
+   ], 
+   [
+      2, 
+      "Rihanna", 
+      "Rehab", 
+      "DER SCHEISS IS SO LANGWEILIG"
+   ], 
+   [
+      0, 
+      "Rihanna", 
+      "DIEs das", 
+      "FUUUUUUCK"
+   ]
+]
