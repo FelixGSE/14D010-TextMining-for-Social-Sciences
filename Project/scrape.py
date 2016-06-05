@@ -53,12 +53,19 @@ set03 = read('full_songs_3.json')
 full_set = set01 + set02 + set03
 
 
-rec01 = crawl_awards(full_set[0:1])
-rec01 = crawl_awards(some)
 
-save('test.txt',test)
+rec01 = crawl_awards(full_set[0:499])
+save('rec01.json',rec01)
+rec02 = crawl_awards(full_set[500:999])
+save('rec02.json',rec02)
+rec03 = crawl_awards(full_set[1000:1496])
+save('rec03.json',rec03)
 
-some =[[u'Rihanna', u'We Ride ', u'DAS SIND BEHINDERTE LYRICS'], [u'Rihanna', u'Rehab', u'DER SCHEISS IS SO LANGWEILIG'], [u'Rihanna', 'DIEs das', 'FUUUUUUCK']]
+
+
+
+
+
 
 ####################################################################################################
 
