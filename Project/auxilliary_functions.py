@@ -57,4 +57,10 @@ def weighted_benchmark(vector,n):
     rchoice = numbers.tolist()
     return rchoice
 
+# Wrapper to convert a dictionary to a list of list - Source: Stackexchange
+def dic2list(dictionary):
+    my_list = []
+    for key, value in dictionary.iteritems():
+        my_list.append([key, value])
+    return my_list
 
