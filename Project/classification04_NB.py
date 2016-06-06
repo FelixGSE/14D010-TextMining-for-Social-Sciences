@@ -1,14 +1,15 @@
 # ----------------------------------------------------------------
-# Random Forest - CV
+# Naive Multinomial Bayes Classifier - CV
 # ----------------------------------------------------------------
 
-def rf_cv(data,fold,ntree):
+def multNB_cv(data,folds,alpha):
 
     # Convert data to numpies
     X = np.array(data.ix[:,1:])
     Y = np.array(data.ix[:,0])
+
     # Set K-Fold option
-    kf = KFold(data.shape[0], n_folds=fold)
+    kf = KFold(data.shape[0], n_folds=folds)
 
     # Storage list for accuracies
     accuracies = []
@@ -32,12 +33,11 @@ def rf_cv(data,fold,ntree):
         # Size of test set
         n_test = len(temp_test_label)
 
-        clf = RandomForestClassifier(n_estimators=ntree)
+        clf = MultinomialNB(alpha=alpha)
         clf.fit(temp_train_data, temp_train_label)
-        rf_prediction = clf.predict(temp_test_data)
+        nb_prediction = clf.predict(temp_test_data)
 
-        temp_acc = sum(temp_test_label == rf_prediction) / float(n_test)
-
+        temp_acc = sum(temp_test_label == nb_prediction) / float(n_test)
         accuracies.append(temp_acc)
 
         # Trace
@@ -46,6 +46,6 @@ def rf_cv(data,fold,ntree):
          # Update counter
         i = i + 1
 
-    rfscore = round(np.mean(accuracies),3)
+    nbscore = round(np.mean(accuracies),3)
 
-    return rfscore
+    return nbscore

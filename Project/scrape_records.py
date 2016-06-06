@@ -1,7 +1,14 @@
+# ----------------------------------------------------------------
+# Convert string to required form
+# ----------------------------------------------------------------
 
 def to_record_search_string(string):
 	search_string = re.sub('\s','+',string)
 	return search_string
+
+# ----------------------------------------------------------------
+# Crawl awards from riaa
+# ----------------------------------------------------------------
 
 def crawl_awards(song_list):
 
@@ -96,6 +103,3 @@ def crawl_awards(song_list):
 			trace_finish(idx)
 
 	return [global_list,error_list]
-
-
-
