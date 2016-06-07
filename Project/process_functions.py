@@ -88,7 +88,7 @@ def tdm_matrix(list_of_tokens):
 def ngram(list_of_strings,n):
 
     vectorizer = CountVectorizer(ngram_range=(n, n))
-    X = vectorizer.fit_transform(corpus)
+    X = vectorizer.fit_transform(list_of_strings)
     colnames = vectorizer.get_feature_names()
     ngram_matrix = X.toarray()
 
@@ -105,6 +105,28 @@ def tf_idf(tdm,norm = "l2"):
     tfidf.fit(tdm)
     tf_idf_matrix = tfidf.transform(tdm)
     return tf_idf_matrix
+
+# ----------------------------------------------------------------
+# Count unique terms
+# ----------------------------------------------------------------
+
+def unique_terms(list_of_tokens):
+    unique_count = []
+    for sub in list_of_tokens:
+        count= len(set(sub))
+        unique_count.append(count)
+    return unique_count
+
+# ----------------------------------------------------------------
+# Compute length of song title
+# ----------------------------------------------------------------
+
+def token_length(list_of_tokens):
+    title_len = []
+    for sub in list_of_tokens:
+        length = len(sub)
+        title_len.append(length)
+    return title_len
 
 # ----------------------------------------------------------------
 # Compute basic sentiment of the text
@@ -133,8 +155,30 @@ def my_lda(list_of_tokens,topics = 2,npass=20):
     dictionary = corpora.Dictionary(list_of_tokens)    
     corpus = [dictionary.doc2bow(text) for text in list_of_tokens]
 
-    ldamodel = gensim.models.ldamodel.LdaModel(corpus, num_topics=topics, id2word = dictionary, passes=npass)
+    ldamodel = gensim.models.ldamodel.LdaModel(corpus,num_topics=topics, id2word = dictionary, passes=npass)
+    topic_found = ldamodel.print_topics()
+    lda_prediction = process_tuples(ldamodel[corpus],topics)
 
-    lda_prediction = ldamodel[corpus]
+    return [lda_prediction,topic_found]
 
-    return lda_prediction
+# ----------------------------------------------------------------
+# Find the number of topics of LDA based on likelihood
+# ----------------------------------------------------------------
+
+def find_k_lda(document_term_matrix,k=range(2,4),n=100):
+    
+    avg_likelihoods = []
+
+    for idx in k:
+
+        model = lda.LDA(n_topics=idx, n_iter=n, random_state=1)
+        model.fit(document_term_matrix)
+        temp_average = list_avg(model.loglikelihoods_)
+        avg_likelihoods.append(temp_average)
+
+    index = np.argmin(avg_likelihoods)
+    like_min = avg_likelihoods[index]
+    best_k = k[index]
+    opt_params = [best_k,like_min]
+    final_output = [opt_params,avg_likelihoods]    
+    return final_output

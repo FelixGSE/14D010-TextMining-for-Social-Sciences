@@ -6,7 +6,6 @@ import pandas as pd
 from sklearn import svm, grid_search, datasets
 from sklearn.cross_validation  import KFold
 from sklearn.feature_selection import chi2, SelectFdr,SelectKBest
-from sklearn.feature_selection import 
 from sklearn.neighbors   import KNeighborsClassifier
 from sklearn.ensemble    import RandomForestClassifier
 from sklearn.naive_bayes import MultinomialNB

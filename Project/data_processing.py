@@ -12,7 +12,10 @@ from nltk import PorterStemmer
 from afinn import Afinn
 import json
 from sklearn.feature_extraction.text import TfidfTransformer
-
+from gensim import corpora, models, similarities
+from gensim.models import hdpmodel, ldamodel
+from itertools import izip
+import gensim
 # For N-gram
 from sklearn.feature_extraction.text import CountVectorizer
 
@@ -51,4 +54,4 @@ test2 =tf_idf(test)
 
 
 
-
+test = my_lda(stemmed,topics=3,npass=1)

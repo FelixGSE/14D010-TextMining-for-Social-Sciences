@@ -113,3 +113,72 @@ def untokenize(list_of_tokens):
         joined = " ".join(sub)
         texts.append(joined)
     return texts
+
+# ----------------------------------------------------------------
+# Adjust to format lda output
+# ----------------------------------------------------------------
+
+def convert_tuple(list_of_tuples,ntopics):
+    array = []
+    for sub in list_of_tuples:
+        sub_array = []
+        for tup in sub:
+            sub_array.append(tup[1])
+        array.append(sub_array)
+
+    return array 
+
+# ----------------------------------------------------------------
+# Auxilliary functions to convert tuples from RF Feature selection
+# ----------------------------------------------------------------
+
+def subset_tuples(list_of_tuples, k ):
+    itter_range = range(k)
+    colnames = []
+    for sub in itter_range:
+        temp = list_of_tuples[sub][1]
+        colnames.append(temp)
+    return colnames
+
+# ----------------------------------------------------------------
+# Find indices of pattern in array
+# ----------------------------------------------------------------
+
+def none_index(array,pattern = None):
+    indices = [i for i, e in enumerate(array) if e == pattern]
+    return indices 
+
+# ----------------------------------------------------------------
+# Rep function from R
+# ----------------------------------------------------------------
+
+def rep(item, n ):
+    new = []
+    for i in range(n):
+        new.append(item)
+    return new   
+
+# ----------------------------------------------------------------
+# Process Tuples in lda
+# ----------------------------------------------------------------
+
+def process_tuples(list_of_tuples,n):
+    final_list = []
+    for sub in list_of_tuples:
+        row = rep(None,n)
+        for temp_tuple in sub:
+            pos = temp_tuple[0]
+            row[pos] = round(temp_tuple[1],5)
+        row = [0 if itter is None else itter for itter in row]
+        final_list.append(row)
+    return final_list
+
+# ----------------------------------------------------------------
+# Wrapper for average of a list
+# ----------------------------------------------------------------
+
+def list_avg(array,radiant = 3):
+    result = sum(array) / float(len(array))
+    return round(result,radiant)
+
+
