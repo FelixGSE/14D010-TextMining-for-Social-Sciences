@@ -1,0 +1,37 @@
+\begin{thebibliography}{}
+
+\bibitem[Breiman, 2001]{Breiman2001}
+Breiman, L. (2001).
+\newblock {Random Forests}.
+\newblock {\em Machine learning}, 45.1:5--32.
+
+\bibitem[Divya and Kumar, 2015]{Divya2015}
+Divya, P. and Kumar, G. S.~N. (2015).
+\newblock {Study on Feature Selection Methods for Text Mining}.
+\newblock 2(1):11--19.
+
+\bibitem[Murphy, 2012]{Murphy2012}
+Murphy, K.~P. (2012).
+\newblock {\em Machine Learning: A Probabilistic Perspective}.
+\newblock The MIT Press.
+
+\bibitem[RIAA, 2016]{riaa}
+RIAA (2016).
+\newblock Certification criteia.
+\newblock http://www.riaa.com.
+
+\bibitem[Songlyrics, 2016]{songlyrics}
+Songlyrics (2016).
+\newblock Songlyrics.com.
+\newblock http://www.songlyrics.com.
+
+\bibitem[Wasserman, 2004]{Wasserman2004}
+Wasserman, L. (2004).
+\newblock {\em {All of Statistics: A Concise Course in Statistical Inference}},
+  volume 1542.
+
+\bibitem[Wikipedia, 2016]{wiki}
+Wikipedia (2016).
+\newblock Billboard year end hot 100 singles of 2015.
+
+\end{thebibliography}

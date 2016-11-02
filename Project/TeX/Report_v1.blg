@@ -1,0 +1,55 @@
+This is BibTeX, Version 0.99d (TeX Live 2015)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: Report_v1.aux
+The style file: apalike.bst
+Database file #1: tm.bib.bib
+Warning--entry type for "wiki" isn't style-file defined
+--line 1 of file tm.bib.bib
+Warning--entry type for "songlyrics" isn't style-file defined
+--line 8 of file tm.bib.bib
+Warning--entry type for "riaa" isn't style-file defined
+--line 16 of file tm.bib.bib
+Warning--empty journal in Divya2015
+Warning--empty publisher in Wasserman2004
+You've used 7 entries,
+            1935 wiz_defined-function locations,
+            511 strings with 4274 characters,
+and the built_in function-call counts, 2016 in all, are:
+= -- 199
+> -- 55
+< -- 8
++ -- 16
+- -- 16
+* -- 145
+:= -- 377
+add.period$ -- 19
+call.type$ -- 7
+change.case$ -- 41
+chr.to.int$ -- 7
+cite$ -- 9
+duplicate$ -- 86
+empty$ -- 146
+format.name$ -- 25
+if$ -- 380
+int.to.chr$ -- 1
+int.to.str$ -- 0
+missing$ -- 6
+newline$ -- 36
+num.names$ -- 21
+pop$ -- 35
+preamble$ -- 1
+purify$ -- 43
+quote$ -- 0
+skip$ -- 71
+stack$ -- 0
+substring$ -- 119
+swap$ -- 4
+text.length$ -- 1
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 38
+warning$ -- 2
+while$ -- 18
+width$ -- 0
+write$ -- 84
+(There were 5 warnings)

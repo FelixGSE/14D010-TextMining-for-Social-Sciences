@@ -1,0 +1,12 @@
+\select@language {english}
+\contentsline {section}{I \hspace {0.35em}Table of Contents}{II}{section*.1}
+\contentsline {section}{\numberline {II}List of Figures}{II}{section.II}
+\contentsline {section}{\numberline {III}List of Tables}{II}{section.III}
+\contentsline {section}{\numberline {1}Introduction}{1}{section.1}
+\contentsline {section}{\numberline {2}Data; Collection, processing and summary}{1}{section.2}
+\contentsline {section}{\numberline {3}Implementation and Analysis}{4}{section.3}
+\contentsline {subsection}{\numberline {3.1}Applied classifiers}{5}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Feature engineering and feature selection}{6}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}Analysis results}{7}{subsection.3.3}
+\contentsline {subsection}{\numberline {3.4}Conclusion and review of results}{8}{subsection.3.4}
+\contentsline {section}{\numberline {4}List of Literature}{10}{section.4}

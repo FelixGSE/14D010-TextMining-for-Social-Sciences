@@ -1,0 +1,6 @@
+\select@language {english}
+\contentsline {table}{\numberline {1}{\ignorespaces Overview of data sources\relax }}{2}{table.caption.2}
+\contentsline {table}{\numberline {2}{\ignorespaces Data Summary - Yearly Billboard Hot 100 (Cleaned, 2000 - 2015)\relax }}{3}{table.caption.3}
+\contentsline {table}{\numberline {3}{\ignorespaces Benchmark Classifier (5-folds)\relax }}{7}{table.caption.6}
+\contentsline {table}{\numberline {4}{\ignorespaces 5-fold cross validation Accuracy scores for different sizes of feature matrix \relax }}{8}{table.caption.7}
+\contentsline {table}{\numberline {5}{\ignorespaces Confusion matrix for random forest prediction on 4000 features\relax }}{8}{table.caption.8}
