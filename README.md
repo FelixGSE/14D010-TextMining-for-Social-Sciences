@@ -1,3 +1,5 @@
 # 14D010-TextMining-for-Social-Sciences
 
-This repository stores ... 
+## Project 
+
+Predicting rewards for single records only using features extracted from song lyrics
